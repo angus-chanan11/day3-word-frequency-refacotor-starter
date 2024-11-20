@@ -11,6 +11,7 @@ public class WordFrequencyGame {
     public static final String SPACE = "\\s+";
     public static final String LINE_BREAK = "\n";
     public static final String SEPARATOR = " ";
+    public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getWordFrequency(String sentence) {
         if (sentence.split(SPACE).length == 1) {
@@ -24,7 +25,7 @@ public class WordFrequencyGame {
                 wordFrequencies = getWordFrequencies(wordToWordFrequenciesMap);
                 return joinResult(wordFrequencies);
             } catch (Exception e) {
-                return "Calculate Error";
+                return CALCULATE_ERROR;
             }
         }
     }
