@@ -18,10 +18,7 @@ public class WordFrequencyGame {
         } else {
             try {
                 //split the input string with 1 to n pieces of spaces
-                String[] words = sentence.split(SPACE);
-                List<WordFrequency> wordFrequencies = Arrays.stream(words)
-                        .map(word -> new WordFrequency(word, 1))
-                        .toList();
+                List<WordFrequency> wordFrequencies = getInitialWordFrequencies(sentence);
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
                 List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
@@ -36,6 +33,14 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private static List<WordFrequency> getInitialWordFrequencies(String sentence) {
+        String[] words = sentence.split(SPACE);
+        List<WordFrequency> wordFrequencies = Arrays.stream(words)
+                .map(word -> new WordFrequency(word, 1))
+                .toList();
+        return wordFrequencies;
     }
 
     private Map<String, List<WordFrequency>> getWordToWordFrequenciesMap(List<WordFrequency> wordFrequencies) {
