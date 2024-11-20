@@ -23,10 +23,10 @@ public class WordFrequencyGame {
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
                 List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
                         .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
+                        .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
                         .collect(Collectors.toList());
                 wordFrequencies = aggregatedWordFrequencies;
                 return wordFrequencies.stream()
-                        .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
                         .map(wordFrequency -> wordFrequency.getValue() + SEPARATOR + wordFrequency.getWordCount())
                         .collect(Collectors.joining(LINE_BREAK));
             } catch (Exception e) {
