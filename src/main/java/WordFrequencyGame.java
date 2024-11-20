@@ -18,9 +18,7 @@ public class WordFrequencyGame {
             return sentence + " 1";
         } else {
             try {
-                //split the input string with 1 to n pieces of spaces
                 List<WordFrequency> wordFrequencies = getInitialWordFrequencies(sentence);
-                //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
                 wordFrequencies = getWordFrequencies(wordToWordFrequenciesMap);
                 return joinResult(wordFrequencies);
