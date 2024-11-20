@@ -38,11 +38,10 @@ public class WordFrequencyGame {
 
     private static List<WordFrequency> getWordFrequencies(Map<String, List<WordFrequency>> wordToWordFrequenciesMap) {
         List<WordFrequency> wordFrequencies;
-        List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
+        wordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
                 .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
                 .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
                 .collect(Collectors.toList());
-        wordFrequencies = aggregatedWordFrequencies;
         return wordFrequencies;
     }
 
