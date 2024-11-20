@@ -21,11 +21,7 @@ public class WordFrequencyGame {
                 List<WordFrequency> wordFrequencies = getInitialWordFrequencies(sentence);
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
-                List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
-                        .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
-                        .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
-                        .collect(Collectors.toList());
-                wordFrequencies = aggregatedWordFrequencies;
+                wordFrequencies = getWordFrequencies(wordToWordFrequenciesMap);
                 return wordFrequencies.stream()
                         .map(wordFrequency -> wordFrequency.getValue() + SEPARATOR + wordFrequency.getWordCount())
                         .collect(Collectors.joining(LINE_BREAK));
@@ -33,6 +29,16 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private static List<WordFrequency> getWordFrequencies(Map<String, List<WordFrequency>> wordToWordFrequenciesMap) {
+        List<WordFrequency> wordFrequencies;
+        List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
+                .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
+                .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
+                .collect(Collectors.toList());
+        wordFrequencies = aggregatedWordFrequencies;
+        return wordFrequencies;
     }
 
     private static List<WordFrequency> getInitialWordFrequencies(String sentence) {
