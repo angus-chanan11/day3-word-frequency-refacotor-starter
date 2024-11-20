@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -23,11 +24,9 @@ public class WordFrequencyGame {
                         .toList();
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
-                List<WordFrequency> aggregatedWordFrequencies = new ArrayList<>();
-                for (Map.Entry<String, List<WordFrequency>> entry : wordToWordFrequenciesMap.entrySet()) {
-                    WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-                    aggregatedWordFrequencies.add(wordFrequency);
-                }
+                List<WordFrequency> aggregatedWordFrequencies = wordToWordFrequenciesMap.entrySet().stream()
+                        .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
+                        .collect(Collectors.toList());
                 wordFrequencies = aggregatedWordFrequencies;
                 wordFrequencies.sort((word, nextWord) -> nextWord.getWordCount() - word.getWordCount());
                 StringJoiner joiner = new StringJoiner(LINE_BREAK);
