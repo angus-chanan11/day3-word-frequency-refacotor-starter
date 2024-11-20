@@ -54,8 +54,7 @@ public class WordFrequencyGame {
     }
 
     private Map<String, List<WordFrequency>> getWordToWordFrequenciesMap(List<WordFrequency> wordFrequencies) {
-        Map<String, List<WordFrequency>> wordToWordFrequenciesMap = wordFrequencies.stream()
+        return wordFrequencies.stream()
                 .collect(Collectors.groupingBy(WordFrequency::getValue));
-        return wordToWordFrequenciesMap;
     }
 }
