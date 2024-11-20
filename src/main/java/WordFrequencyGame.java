@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,11 +18,7 @@ public class WordFrequencyGame {
             try {
                 //split the input string with 1 to n pieces of spaces
                 String[] words = sentence.split(SPACE);
-                List<WordFrequency> wordFrequencies = new ArrayList<>();
-                for (String word : words) {
-                    WordFrequency wordFrequency = new WordFrequency(word, 1);
-                    wordFrequencies.add(wordFrequency);
-                }
+                List<WordFrequency> wordFrequencies = Arrays.stream(words).map(word -> new WordFrequency(word, 1)).toList();
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
                 List<WordFrequency> aggregatedWordFrequencies = new ArrayList<>();
