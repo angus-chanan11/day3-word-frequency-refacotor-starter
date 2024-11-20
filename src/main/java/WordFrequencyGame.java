@@ -7,6 +7,7 @@ import java.util.StringJoiner;
 public class WordFrequencyGame {
 
     public static final String SPACE = "\\s+";
+    public static final String LINE_BREAK = "\n";
 
     public String getWordFrequency(String sentence) {
         if (sentence.split(SPACE).length == 1) {
@@ -29,7 +30,7 @@ public class WordFrequencyGame {
                 }
                 wordFrequencies = aggregatedWordFrequencies;
                 wordFrequencies.sort((word, nextWord) -> nextWord.getWordCount() - word.getWordCount());
-                StringJoiner joiner = new StringJoiner("\n");
+                StringJoiner joiner = new StringJoiner(LINE_BREAK);
                 for (WordFrequency wordFrequency : wordFrequencies) {
                     String wordFrequencyAsString = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
                     joiner.add(wordFrequencyAsString);
