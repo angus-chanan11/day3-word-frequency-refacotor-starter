@@ -14,17 +14,13 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getWordFrequency(String sentence) {
-        if (sentence.split(SPACE).length == 1) {
-            return sentence + " 1";
-        } else {
-            try {
-                List<WordFrequency> wordFrequencies = getInitialWordFrequencies(sentence);
-                Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
-                wordFrequencies = getWordFrequencies(wordToWordFrequenciesMap);
-                return joinResult(wordFrequencies);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+        try {
+            List<WordFrequency> wordFrequencies = getInitialWordFrequencies(sentence);
+            Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getWordToWordFrequenciesMap(wordFrequencies);
+            wordFrequencies = getWordFrequencies(wordToWordFrequenciesMap);
+            return joinResult(wordFrequencies);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
 
