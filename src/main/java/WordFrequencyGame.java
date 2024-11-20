@@ -18,9 +18,9 @@ public class WordFrequencyGame {
                     wordFrequencies.add(wordFrequency);
                 }
                 //get the map for the next step of sizing the same word
-                Map<String, List<WordFrequency>> wordToWordFrequencies = getListMap(wordFrequencies);
+                Map<String, List<WordFrequency>> wordToWordFrequenciesMap = getListMap(wordFrequencies);
                 List<WordFrequency> list = new ArrayList<>();
-                for (Map.Entry<String, List<WordFrequency>> entry : wordToWordFrequencies.entrySet()) {
+                for (Map.Entry<String, List<WordFrequency>> entry : wordToWordFrequenciesMap.entrySet()) {
                     WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
                     list.add(wordFrequency);
                 }
