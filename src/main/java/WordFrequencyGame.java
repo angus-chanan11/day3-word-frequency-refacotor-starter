@@ -25,7 +25,7 @@ public class WordFrequencyGame {
                     list.add(wordFrequency);
                 }
                 wordFrequencies = list;
-                wordFrequencies.sort((word1, w2) -> w2.getWordCount() - word1.getWordCount());
+                wordFrequencies.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WordFrequency wordFrequency : wordFrequencies) {
                     String wordFrequencyAsString = wordFrequency.getValue() + " " + wordFrequency.getWordCount();
