@@ -28,13 +28,10 @@ public class WordFrequencyGame {
                         .map(entry -> new WordFrequency(entry.getKey(), entry.getValue().size()))
                         .collect(Collectors.toList());
                 wordFrequencies = aggregatedWordFrequencies;
-                wordFrequencies.sort((word, nextWord) -> nextWord.getWordCount() - word.getWordCount());
-                StringJoiner joiner = new StringJoiner(LINE_BREAK);
-                for (WordFrequency wordFrequency : wordFrequencies) {
-                    String wordFrequencyAsString = wordFrequency.getValue() + SEPARATOR + wordFrequency.getWordCount();
-                    joiner.add(wordFrequencyAsString);
-                }
-                return joiner.toString();
+                return wordFrequencies.stream()
+                        .sorted((word, nextWord) -> nextWord.getWordCount() - word.getWordCount())
+                        .map(wordFrequency -> wordFrequency.getValue() + SEPARATOR + wordFrequency.getWordCount())
+                        .collect(Collectors.joining(LINE_BREAK));
             } catch (Exception e) {
                 return "Calculate Error";
             }
